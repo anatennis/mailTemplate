@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.thymeleaf.org ">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <title>Title</title>
+
+</head>
+
+<body>
+
+<p th:text="'Здравствуйте, ' + ${user.name} + '!'"></p>
+<p>
+    Дата и номер Вашего заказа: <b><span th:text="${#dates.format(orderDate)}"></span></b>
+</p>
+<table border="2">
+    <tr>
+        <th> № </th>
+        <th> Name </th>
+        <th> Count </th>
+        <th> Price </th>
+        <th> Total </th>
+    </tr>
+    <tbody>
+    <tr th:each="item, state : ${items}">
+        <td style="width: fit-content"><span th:text="${state.count}"> # </span></td>
+        <td><span th:text="${item.name}"> Name </span></td>
+        <td><span th:text="${item.count}"> Count </span></td>
+        <td><span th:text="${item.price}"> Price </span></td>
+        <td><span th:text="${item.count*item.price}"> Total </span></td>
+    </tr>
+    </tbody>
+</table>
+<div>
+    Знаете, а другие покупатели вместе с этими товарами берут еще и...
+    <div th:each="item : ${sameitems}">
+        <div th:text="${item.name}"></div>
+    </div>
+</div>
+<footer style="border: black 1px; color: white">
+    <div th:if="${user.registred}">
+        У вас накопилась целая куча баллов, аж <b><span th:text="${user.point}"></span></b>,
+        и все можно потратить на всякие крутотени!
+    </div>
+    <div th:if="!${user.registred}">
+        А еще у нас можно копить баллы, попробуйте - вас будет ждать много ништяков!
+        Для этого только надо <a href="http://localhost:8080/register">зарегистрироваться</a>
+    </div>
+</footer>
+
+</body>
+
+</html>

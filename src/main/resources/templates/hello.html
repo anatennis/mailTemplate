@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Hello</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<p th:text="'Hello! Send email to:'" />
+<div th:if="${sended}">
+    <p th:text="${sended}"></p>
+</div>
+<form th:action="@{/}" method="post">
+    <div><label> E-mail: <input type="text" name="email" placeholder="E-mail"/> </label></div>
+    <div><input type="submit" value="Send"/></div>
+</form>
+</body>
+</html>
